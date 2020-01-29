@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
+// 1. import withRouter
+import { Route, withRouter } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -8,6 +9,9 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+
+// 2. import 1 Recipe from '../Routes/Recipe.js'
+import Recipe from '../routes/Recipe.js'
 
 class App extends Component {
   constructor () {
@@ -54,10 +58,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <Route exact path='/recipes/:id' component={Recipe} />
         </main>
       </Fragment>
     )
   }
 }
 
-export default App
+export default withRouter(App)
