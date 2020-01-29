@@ -10,7 +10,9 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
-// 2. import 1 Recipe from '../Routes/Recipe.js'
+// 2. imoport Recipes
+import Recipes from '../routes/Recipes.js'
+// 3. import 1 Recipe from '../Routes/Recipe.js'
 import Recipe from '../routes/Recipe.js'
 
 class App extends Component {
@@ -58,7 +60,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <Route exact path='/recipes/:id' component={Recipe} />
+          <AuthenticatedRoute user={user} exact path='/recipes' component={Recipes} />
+          <AuthenticatedRoute user={user} exact path='/recipes/:id' component={Recipe} />
         </main>
       </Fragment>
     )
