@@ -18,6 +18,8 @@ import Recipes from '../routes/Recipes.js'
 import Recipe from '../routes/Recipe.js'
 // 5. Import createRecipe
 import RecipeCreate from '../routes/RecipeCreate.js'
+// 6. Import editRecipe
+import RecipeEdit from '../routes/RecipeEdit.js'
 
 class App extends Component {
   constructor () {
@@ -68,6 +70,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/recipes' component={Recipes} />
           <AuthenticatedRoute user={user} exact path='/recipes/:id' component={Recipe} />
           <AuthenticatedRoute user={user} exact path='/create-recipe' component={RecipeCreate} />
+          <AuthenticatedRoute user={user} exact path='/recipes/:id/edit' component={RecipeEdit} />
         </main>
       </Fragment>
     )

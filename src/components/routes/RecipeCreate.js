@@ -28,7 +28,7 @@ const RecipeCreate = (props) => {
   }
 
   if (createdRecipeId) {
-    return <Redirect to={`/movies/${createdRecipeId}`} />
+    return <Redirect to={`/recipes/${createdRecipeId}`} />
   }
 
   return (
