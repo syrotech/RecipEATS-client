@@ -67,10 +67,18 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/' component={Home} />
-          <AuthenticatedRoute user={user} exact path='/recipes' component={Recipes} />
-          <AuthenticatedRoute user={user} exact path='/recipes/:id' component={Recipe} />
-          <AuthenticatedRoute user={user} exact path='/create-recipe' component={RecipeCreate} />
-          <AuthenticatedRoute user={user} exact path='/recipes/:id/edit' component={RecipeEdit} />
+          <AuthenticatedRoute user={user} exact path='/recipes' render={({ match }) => (
+            <Recipes alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/recipes/:id' render={({ match }) => (
+            <Recipe alert={this.alert} user={user} match={match} />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-recipe' render={({ match }) => (
+            <RecipeCreate alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/recipes/:id/edit' render={({ match }) => (
+            <RecipeEdit alert={this.alert} user={user} match={ match } />
+          )} />
         </main>
       </Fragment>
     )

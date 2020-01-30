@@ -5,13 +5,37 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Layout from '../shared/Layout'
 
+import messages from '../AutoDismissAlert/messages'
+
 const Recipes = props => {
   const [recipes, setRecipes] = useState([])
+  // const { alert } = props
 
   useEffect(() => {
-    axios(`${apiUrl}/recipes`)
+    axios({
+      url: `${apiUrl}/recipes`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
+    })
       .then(res => setRecipes(res.data.recipes))
-      .catch(console.error)
+      .then(() => {
+        console.log(props.alert)
+        props.alert({
+          heading: 'Index Recipes Success',
+          message: messages.indexSuccess,
+          variant: 'success'
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+        props.alert({
+          heading: 'Index Recipes Failed',
+          message: messages.indexFailure,
+          variant: 'danger'
+        })
+      })
   }, [])
 
   const recipesJsx = recipes.map(recipe => (

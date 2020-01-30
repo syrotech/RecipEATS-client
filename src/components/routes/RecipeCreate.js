@@ -21,6 +21,9 @@ const RecipeCreate = (props) => {
     axios({
       url: `${apiUrl}/recipes`,
       method: 'POST',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      },
       data: { recipe }
     })
       .then(res => setCreatedRecipeId(res.data.recipe.id))

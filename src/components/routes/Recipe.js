@@ -7,18 +7,37 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Layout from '../shared/Layout'
 
+import messages from '../AutoDismissAlert/messages'
+
 // 3. Make recipe into a functional component
 // 4. Replace `constructor`, `super`, and `this.state` with hook
 // 5. Make hook for `delete`
 const Recipe = (props) => {
   const [recipe, setRecipe] = useState(null)
   const [deleted, setDeleted] = useState(false)
-
+  console.log('props', props)
   // 6. Replace `componentDidMount` and replace with `useEffect` imported above
   // 7. change `setState` to `setRecipe` and take out `this` in api url
   useEffect(() => {
-    axios(`${apiUrl}/recipes/${props.match.params.id}`)
-      .then(res => setRecipe(res.data.recipe))
+    axios({
+      url: `${apiUrl}/recipes/${props.match.params.id}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
+    })
+      .then(res => {
+        console.log(res)
+        setRecipe(res.data.recipe)
+      })
+      .then(() => {
+        console.log(props.alert)
+        props.alert({
+          heading: 'Show a Recipe Success',
+          message: messages.showSuccess,
+          variant: 'success'
+        })
+      })
       .catch(console.error)
   }, [])
 
@@ -26,9 +45,20 @@ const Recipe = (props) => {
   const destroy = () => {
     axios({
       url: `${apiUrl}/recipes/${props.match.params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
     })
       .then(() => setDeleted(true))
+      .then(() => {
+        console.log(props.alert)
+        props.alert({
+          heading: 'Deleted Recipe Success',
+          message: messages.deleteSuccess,
+          variant: 'success'
+        })
+      })
       .catch(console.error)
   }
 
@@ -43,10 +73,12 @@ const Recipe = (props) => {
       { pathname: '/', state: { msg: 'Recipe succesfully deleted!' } }
     } />
   }
-
+  console.log('recipe', recipe)
   return (
     <Layout>
-      <h4>{recipe.title}</h4>
+      <p>Title: {recipe.title}</p>
+      <p>Time: {recipe.time}</p>
+      <p>Servings: {recipe.servings}</p>
       <p>Ingredients: {recipe.ingredients}</p>
       <p>Directions: {recipe.instructions}</p>
       <button onClick={destroy}>Delete Recipe</button>

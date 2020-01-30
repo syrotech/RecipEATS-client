@@ -11,6 +11,22 @@ const RecipeForm = ({ recipe, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
+    <label>Time</label>
+    <input
+      placeholder="Time"
+      value={recipe.time}
+      name="time"
+      onChange={handleChange}
+    />
+
+    <label>Servings</label>
+    <input
+      placeholder="Servings"
+      value={recipe.servings}
+      name="servings"
+      onChange={handleChange}
+    />
+
     <label>Ingredients</label>
     <input
       placeholder="Ingredients"
