@@ -49,11 +49,18 @@ const RecipeEdit = (props) => {
           variant: 'success'
         })
       })
-      .catch(console.error)
+      .catch((error) => {
+        console.error(error)
+        props.alert({
+          heading: 'Failure! Update Failed',
+          message: messages.editFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (updated) {
-    return <Redirect to={`/recipes/${props.match.params.id}`} />
+    return <Redirect to={'/'} />
   }
 
   return (

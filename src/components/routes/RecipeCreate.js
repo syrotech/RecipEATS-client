@@ -6,6 +6,8 @@ import apiUrl from '../../apiConfig'
 import RecipeForm from '../shared/RecipeForm'
 import Layout from '../shared/Layout'
 
+import messages from '../AutoDismissAlert/messages'
+
 const RecipeCreate = (props) => {
   const [recipe, setRecipe] = useState({ title: '', ingredients: '', instructions: '' })
   const [createdRecipeId, setCreatedRecipeId] = useState(null)
@@ -27,11 +29,26 @@ const RecipeCreate = (props) => {
       data: { recipe }
     })
       .then(res => setCreatedRecipeId(res.data.recipe.id))
-      .catch(console.error)
+      .then(() => {
+        console.log(props.alert)
+        props.alert({
+          heading: 'You added a recipe! Success!',
+          message: messages.createSuccess,
+          variant: 'success'
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+        props.alert({
+          heading: 'Failure! Recipes Failed',
+          message: messages.createFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (createdRecipeId) {
-    return <Redirect to={`/recipes/${createdRecipeId}`} />
+    return <Redirect to={'/'} />
   }
 
   return (
