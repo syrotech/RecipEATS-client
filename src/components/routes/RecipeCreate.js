@@ -30,7 +30,7 @@ const RecipeCreate = (props) => {
     })
       .then(res => setCreatedRecipeId(res.data.recipe.id))
       .then(() => {
-        console.log(props.alert)
+        // console.log(props.alert)
         props.alert({
           heading: 'You added a recipe! Success!',
           message: messages.createSuccess,

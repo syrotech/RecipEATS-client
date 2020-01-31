@@ -21,7 +21,7 @@ const Recipes = props => {
     })
       .then(res => setRecipes(res.data.recipes))
       .then(() => {
-        console.log(props.alert)
+        // console.log(props.alert)
         props.alert({
           heading: 'Index Recipes Success',
           message: messages.indexSuccess,

@@ -31,7 +31,7 @@ const RecipeEdit = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(props)
+    // console.log(props)
     axios({
       url: `${apiUrl}/recipes/${props.match.params.id}`,
       method: 'PATCH',
@@ -42,7 +42,7 @@ const RecipeEdit = (props) => {
     })
       .then(() => setUpdated(true))
       .then(() => {
-        console.log(props.alert)
+        // console.log(props.alert)
         props.alert({
           heading: 'Updated your Recipe Success',
           message: messages.editSuccess,

@@ -15,7 +15,7 @@ import messages from '../AutoDismissAlert/messages'
 const Recipe = (props) => {
   const [recipe, setRecipe] = useState(null)
   const [deleted, setDeleted] = useState(false)
-  console.log('props', props)
+  // console.log('props', props)
   // 6. Replace `componentDidMount` and replace with `useEffect` imported above
   // 7. change `setState` to `setRecipe` and take out `this` in api url
   useEffect(() => {
@@ -27,11 +27,11 @@ const Recipe = (props) => {
       }
     })
       .then(res => {
-        console.log(res)
+        // console.log(res)
         setRecipe(res.data.recipe)
       })
       .then(() => {
-        console.log(props.alert)
+        // console.log(props.alert)
         props.alert({
           heading: 'Show a Recipe Success',
           message: messages.showSuccess,
@@ -52,7 +52,7 @@ const Recipe = (props) => {
     })
       .then(() => setDeleted(true))
       .then(() => {
-        console.log(props.alert)
+        // console.log(props.alert)
         props.alert({
           heading: 'Deleted Recipe Success',
           message: messages.deleteSuccess,
@@ -73,7 +73,7 @@ const Recipe = (props) => {
       { pathname: '/', state: { msg: 'Recipe succesfully deleted!' } }
     } />
   }
-  console.log('recipe', recipe)
+  // console.log('recipe', recipe)
   return (
     <Layout>
       <p>Title: {recipe.title}</p>
