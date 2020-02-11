@@ -81,6 +81,7 @@ const Recipe = (props) => {
       <p>Servings: {recipe.servings}</p>
       <p>Ingredients: {recipe.ingredients}</p>
       <p>Directions: {recipe.instructions}</p>
+      <p>Image URL: {recipe.imageurl}</p>
       <button onClick={destroy}>Delete Recipe</button>
       <Link to={`/recipes/${props.match.params.id}/edit`}>
         <button>Edit</button>

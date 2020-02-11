@@ -43,6 +43,14 @@ const RecipeForm = ({ recipe, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
+    <label>Image URL</label>
+    <input
+      placeholder="Image URL"
+      value={recipe.imageurl}
+      name="imageurl"
+      onChange={handleChange}
+    />
+
     <button type="submit">Submit</button>
     <Link to={cancelPath}>
       <button>Cancel</button>
