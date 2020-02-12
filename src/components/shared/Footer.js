@@ -2,7 +2,7 @@
 import React from 'react'
 
 const Footer = () => (
-  <p>Created by Janina Emilia Cupp </p>
+  <p>RecipEATS: The Recipe Book, Made with &hearts; Janina Emilia Cupp || 2020 </p>
 )
 
 export default Footer

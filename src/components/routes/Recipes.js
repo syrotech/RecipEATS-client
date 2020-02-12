@@ -61,7 +61,6 @@ const Recipes = props => {
   }
 
   const recipesJsx = recipes.map(recipe => (
-
     <div className="col-lg-2 col-md-3 col-sm-4 col-xs-6 text-center" key={recipe.id} style={styleCard}>
       <img className="image-in-card" src={recipe.imageurl} style={styleImg}/>
       <Link style={styleLink} to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
@@ -71,13 +70,13 @@ const Recipes = props => {
 
   return (
     <Layout>
-      <h4>Recipes</h4>
       <div className="container">
         <div className="row">
           {recipesJsx}
         </div>
       </div>
     </Layout>
+
   )
 }
 

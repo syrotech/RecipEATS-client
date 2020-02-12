@@ -9,6 +9,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Nav from '../shared/Nav.js'
 
 // 2. import Home
 import Home from '../routes/Home.js'
@@ -53,13 +54,14 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <main className="container">
-          <Route path='/sign-up' render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
-          )} />
-          <Route path='/sign-in' render={() => (
-            <SignIn alert={this.alert} setUser={this.setUser} />
-          )} />
+        <Nav user={user} />
+        <Route path='/sign-up' render={() => (
+          <SignUp alert={this.alert} setUser={this.setUser} />
+        )} />
+        <Route path='/sign-in' render={() => (
+          <SignIn alert={this.alert} setUser={this.setUser} />
+        )} />
+        <main className="container" id="mainContainer">
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
